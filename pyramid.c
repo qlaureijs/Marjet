@@ -1,29 +1,25 @@
-static int get_random_numbers(u8 *buf, unsigned int len)
-{
-    struct crypto_rng *rng = NULL;
-    char *drbg = "drbg_nopr_sha256"; /* Hash DRBG with SHA-256, no PR */
-    int ret;
-
-    if (!buf || !len) {
-        pr_debug("No output buffer provided\n");
-        return -EINVAL;
-    }
-
-    rng = crypto_alloc_rng(drbg, 0, 0);
-    if (IS_ERR(rng)) {
-        pr_debug("could not allocate RNG handle for %s\n", drbg);
-        return PTR_ERR(rng);
-    }
-
-    ret = crypto_rng_get_bytes(rng, buf, len);
-    if (ret < 0)
-        pr_debug("generation of random numbers failed\n");
-    else if (ret == 0)
-        pr_debug("RNG returned no data");
-    else
-        pr_debug("RNG returned %d bytes of data\n", ret);
-
-out:
-    crypto_free_rng(rng);
-    return ret;
+#include <stdio.h>
+int main() {
+   int i, space, rows, k = 0, count = 0, count1 = 0;
+   printf("Enter the number of rows: ");
+   scanf("%d", &rows);
+   for (i = 1; i <= rows; ++i) {
+      for (space = 1; space <= rows - i; ++space) {
+         printf("  ");
+         ++count;
+      }
+      while (k != 2 * i - 1) {
+         if (count <= rows - 1) {
+            printf("%d ", i + k);
+            ++count;
+         } else {
+            ++count1;
+            printf("%d ", (i + k - 2 * count1));
+         }
+         ++k;
+      }
+      count1 = count = k = 0;
+      printf("\n");
+   }
+   return 0;
 }
