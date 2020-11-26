@@ -1,4 +1,5 @@
 # Marjet's Sales Training
+## ... and so it begins ..
 
 Hello Marjet, this project is just to show you how open source works, source code, compilation and application development.
 
