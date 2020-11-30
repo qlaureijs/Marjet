@@ -19,6 +19,6 @@
 int main(void)
 {
     //Print the famous words
-    printf(("Hello World\n"));
+    printf(("Hello Marjet\n"));
     return 0;
 }
